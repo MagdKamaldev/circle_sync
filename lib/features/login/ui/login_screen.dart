@@ -4,17 +4,19 @@ import 'package:circle_sync/core/routing/routes.dart';
 import 'package:circle_sync/core/themes/colors/colors.dart';
 import 'package:circle_sync/core/themes/text_styles/text_styles.dart';
 import 'package:circle_sync/core/widgets/button.dart';
-import 'package:circle_sync/core/widgets/tff.dart';
+import 'package:circle_sync/core/widgets/logo.dart';
+import 'package:circle_sync/features/login/data/models/login_request_body.dart';
+import 'package:circle_sync/features/login/logic/cubit/login_cubit.dart';
+import 'package:circle_sync/features/login/ui/email_and_password.dart';
+import 'package:circle_sync/features/login/ui/login_bloc_listener.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController mailController = TextEditingController();
-    TextEditingController passwordController = TextEditingController();
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Colors.white,
@@ -26,32 +28,20 @@ class LoginScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 verticalSpace(40),
-                SizedBox(
-                  width: 200,
-                  height: 200,
-                  child: SvgPicture.asset(
-                    'assets/images/logo.svg',
-                  ),
-                ),
+                const Logo(),
                 verticalSpace(40),
                 const Text(
                   "Sign In",
                   style: TextStyles.heading2,
                 ),
                 verticalSpace(40),
-                AppTextField(
-                    isPassword: false,
-                    controller: mailController,
-                    hintText: "Enter your gmail address",
-                    keyboardType: TextInputType.emailAddress),
-                verticalSpace(35),
-                AppTextField(
-                    isPassword: true,
-                    controller: passwordController,
-                    hintText: "Enter your password",
-                    keyboardType: TextInputType.visiblePassword),
+                const EmailAndPassword(),
                 verticalSpace(size.height * 0.1),
-                AppButton(onPressed: () {}, text: "Sign Up"),
+                AppButton(
+                    onPressed: () {
+                      validateAndLogin(context);
+                    },
+                    text: "Sign Up"),
                 verticalSpace(30),
                 const Text(
                   "Don't have an account?",
@@ -67,11 +57,20 @@ class LoginScreen extends StatelessWidget {
                     context.pushNamed(Routes.signUp);
                   },
                 ),
+                const LoginBlocListener(),
               ],
             ),
           ),
         ),
       ),
     );
+  }
+
+  void validateAndLogin(BuildContext context) {
+    if (context.read<LoginCubit>().formKey.currentState!.validate()) {
+      context.read<LoginCubit>().emitLognStates(LoginRequestBody(
+          email: context.read<LoginCubit>().mailController.text,
+          password: context.read<LoginCubit>().passwordController.text));
+    }
   }
 }

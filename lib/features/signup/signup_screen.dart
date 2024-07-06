@@ -4,9 +4,9 @@ import 'package:circle_sync/core/routing/routes.dart';
 import 'package:circle_sync/core/themes/colors/colors.dart';
 import 'package:circle_sync/core/themes/text_styles/text_styles.dart';
 import 'package:circle_sync/core/widgets/button.dart';
+import 'package:circle_sync/core/widgets/logo.dart';
 import 'package:circle_sync/core/widgets/tff.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 
 class SignUpScreen extends StatelessWidget {
   const SignUpScreen({super.key});
@@ -27,13 +27,7 @@ class SignUpScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                SizedBox(
-                  width: 200,
-                  height: 200,
-                  child: SvgPicture.asset(
-                    'assets/images/logo.svg',
-                  ),
-                ),
+                const Logo(),
                 const Text(
                   "Sign Up",
                   style: TextStyles.heading2,
