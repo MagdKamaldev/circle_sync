@@ -1,17 +1,17 @@
+import 'package:circle_sync/core/routing/routes.dart';
 import 'package:circle_sync/core/themes/colors/colors.dart';
 import 'package:circle_sync/core/themes/text_styles/text_styles.dart';
-import 'package:circle_sync/features/login/logic/cubit/login_cubit.dart';
-import 'package:circle_sync/features/login/logic/cubit/login_state.dart';
+import 'package:circle_sync/features/signup/logic/cubit/sign_up_cubit.dart';
+import 'package:circle_sync/features/signup/logic/cubit/sign_up_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../core/routing/routes.dart';
 
-class LoginBlocListener extends StatelessWidget {
-  const LoginBlocListener({super.key});
+class SignUpBlocListener extends StatelessWidget {
+  const SignUpBlocListener({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<LoginCubit, LoginState>(
+    return BlocListener<SignUpCubit, SignUpState>(
       listenWhen: (previous, current) =>
           current is Loading || current is Success || current is Error,
       listener: (context, state) {
@@ -27,7 +27,7 @@ class LoginBlocListener extends StatelessWidget {
                 ),
               );
             },
-            success: (loginResponse) {
+            success: (signUpResponse) {
               Navigator.of(context).pop();
               Navigator.of(context).pushReplacementNamed(Routes.home);
             },

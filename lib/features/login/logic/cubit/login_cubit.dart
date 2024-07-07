@@ -14,10 +14,15 @@ class LoginCubit extends Cubit<LoginState> {
   TextEditingController passwordController = TextEditingController();
   GlobalKey<FormState> formKey = GlobalKey<FormState>();  
 
-  void emitLognStates(LoginRequestBody loginRequestBody)async{
+  void emitLoginStates()async{
     emit(const LoginState.loading());
     
-      final response = await _loginRepo.login(loginRequestBody);
+      final response = await _loginRepo.login(
+        LoginRequestBody(
+          email: mailController.text,
+          password: passwordController.text
+        ) 
+      );
       response.when(
         success: (data) {
           emit(LoginState.success(data));

@@ -3,7 +3,8 @@ import 'package:circle_sync/core/routing/routes.dart';
 import 'package:circle_sync/features/home/ui/home_screen.dart';
 import 'package:circle_sync/features/login/logic/cubit/login_cubit.dart';
 import 'package:circle_sync/features/login/ui/login_screen.dart';
-import 'package:circle_sync/features/signup/signup_screen.dart';
+import 'package:circle_sync/features/signup/logic/cubit/sign_up_cubit.dart';
+import 'package:circle_sync/features/signup/ui/signup_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -19,7 +20,10 @@ class AppRouter {
         );
       case Routes.signUp:
         return MaterialPageRoute(
-          builder: (_) => const SignUpScreen(),
+          builder: (_) => BlocProvider(
+            create: (context) => getIt<SignUpCubit>(),
+            child: const SignUpScreen(),
+          ),
         );
       case Routes.home:
         return MaterialPageRoute(
