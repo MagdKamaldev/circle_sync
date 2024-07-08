@@ -1,6 +1,6 @@
+// ignore_for_file: depend_on_referenced_packages
 import 'package:freezed_annotation/freezed_annotation.dart';
 part 'sign_up_state.freezed.dart';
-
 
 @freezed
  class SignUpState<T> with _$SignUpState<T> {

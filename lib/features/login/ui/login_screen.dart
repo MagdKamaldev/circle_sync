@@ -5,7 +5,6 @@ import 'package:circle_sync/core/themes/colors/colors.dart';
 import 'package:circle_sync/core/themes/text_styles/text_styles.dart';
 import 'package:circle_sync/core/widgets/button.dart';
 import 'package:circle_sync/core/widgets/logo.dart';
-import 'package:circle_sync/features/login/data/models/login_request_body.dart';
 import 'package:circle_sync/features/login/logic/cubit/login_cubit.dart';
 import 'package:circle_sync/features/login/ui/email_and_password.dart';
 import 'package:circle_sync/features/login/ui/login_bloc_listener.dart';
