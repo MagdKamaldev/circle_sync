@@ -27,5 +27,7 @@ Future<void> setUpGetIt() async {
   //home
    getIt.registerFactory<HomeCubit>(()=>HomeCubit());
 
+  //Profile
+  
   
 }

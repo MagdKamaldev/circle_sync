@@ -1,10 +1,11 @@
 import 'package:circle_sync/core/routing/app_router.dart';
 import 'package:circle_sync/core/routing/routes.dart';
+import 'package:circle_sync/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CircleSyncApp extends StatelessWidget {
-   final AppRouter appRouter;
+  final AppRouter appRouter;
   const CircleSyncApp({super.key, required this.appRouter});
 
   @override
@@ -19,7 +20,7 @@ class CircleSyncApp extends StatelessWidget {
           useMaterial3: true,
         ),
          onGenerateRoute: appRouter.generateRoute,
-              initialRoute: Routes.login,
+              initialRoute: isLoggedInUser? Routes.home: Routes.login,
             )
       );
   }

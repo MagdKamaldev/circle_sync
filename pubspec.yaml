@@ -28,6 +28,7 @@ dependencies:
   flutter_svg: ^2.0.10+1
   flutter_screenutil: ^5.9.3
   build_runner: ^2.4.11
+  shared_preferences: ^2.2.3
 
 dev_dependencies:
   flutter_test:
