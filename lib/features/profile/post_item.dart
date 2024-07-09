@@ -8,12 +8,13 @@ class PostItem extends StatefulWidget {
   final String postContent;
   final int likesCount;
   final int commentsCount;
-
+  final String imageUrl;
   const PostItem({
     required this.userName,
     required this.postContent,
     required this.likesCount,
     required this.commentsCount,
+    required this.imageUrl,
   });
 
   @override
@@ -38,9 +39,10 @@ class _PostItemState extends State<PostItem> {
             children: [
               Row(
                 children: [
-                  const CircleAvatar(
+                  CircleAvatar(
                     radius: 25,
-                    backgroundImage: NetworkImage(''), // Placeholder image
+                    backgroundImage:
+                        NetworkImage(widget.imageUrl), // Placeholder image
                   ),
                   horizontalSpace(10),
                   Text(

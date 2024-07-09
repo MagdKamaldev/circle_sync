@@ -1,29 +1,15 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'post_model.dart';
+
 part 'profile_response_model.g.dart';
-
-@JsonSerializable()
-class ProfileResponseModel {
-  @JsonKey(name: 'user')
-  UserProfile? userProfile;
-
-  ProfileResponseModel({this.userProfile});
-
-  factory ProfileResponseModel.fromJson(Map<String, dynamic> json) =>
-      _$ProfileResponseModelFromJson(json);
-
-  Map<String, dynamic> toJson() => _$ProfileResponseModelToJson(this);
-}
 
 @JsonSerializable()
 class UserProfile {
   String? id;
-  @JsonKey(name: 'firstName')
   String? firstName;
-  @JsonKey(name: 'lastName')
   String? lastName;
-  @JsonKey(name: 'profile_img')
   String? profileImg;
-  List<dynamic>? posts;
+  List<PostModel>? posts;
   bool? isFriend;
   bool? isRequested;
 
@@ -41,4 +27,18 @@ class UserProfile {
       _$UserProfileFromJson(json);
 
   Map<String, dynamic> toJson() => _$UserProfileToJson(this);
+}
+
+
+@JsonSerializable()
+class ProfileResponseModel {
+  @JsonKey(name: 'user')
+  UserProfile? user;
+
+  ProfileResponseModel({this.user});
+
+  factory ProfileResponseModel.fromJson(Map<String, dynamic> json) =>
+      _$ProfileResponseModelFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ProfileResponseModelToJson(this);
 }
